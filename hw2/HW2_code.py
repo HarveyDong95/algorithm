@@ -23,26 +23,30 @@ class UnionFind(object):
                     self.id[i] = self.id[q]
             self.count -= 1
 
-with open(sys.argv[1]) as file:
-    file = file.readlines()
 
-op_num = int(file[0].split(' ')[1])
-elem_num = int(file[0].split(' ')[0])
+#with open(sys.argv[1]) as inputfile:
+#    inputfile = inputfile.readlines()
+temp = input()
+nums = int(temp.split(' ')[0]) + 1
+line = int(temp.split(' ')[1])
 
-qf = UnionFind(elem_num)
+#op_num = int(inputfile[0].split(' ')[1])
+#elem_num = int(inputfile[0].split(' ')[0])
 
-for i in range(op_num):
-    op = file[i+1].split(' ')[0]
+qf = UnionFind(nums)
+
+for i in range(line):
+    inputfile = input()
+    op = inputfile[0]
     if op == 'M':
-        # print('m')
-        node1 = int(file[i+1].split(' ')[1]) -1
-        node2 = int(file[i+1].split(' ')[2]) -1
+        node1 = int(inputfile.split(' ')[1]) #int(inputfile[i+1].split(' ')[1]) -1
+        node2 = int(inputfile.split(' ')[2]) #int(inputfile[i+1].split(' ')[2]) -1
 #         print(node1,node2)
         qf.union(node1,node2)
     elif op == 'Q':
-        # print('q')
-        node3 = int(file[i+1].split(' ')[1])
+        node3 = int(inputfile.split(' ')[1])#int(inputfile[i+1].split(' ')[1])
         res = qf.id
-        res2 = res[node3-1]
+        res2 = res[node3]
         final = res.count(res2)
+        final = str(final)
         print(final)
